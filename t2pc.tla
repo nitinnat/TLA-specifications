@@ -358,24 +358,4 @@ ConsistentRM ==
   
 
 ====================================================================
-Details of group members:
-Nitin Nataraj - nitinnat@buffalo.edu, 50246850
-Arun Krishnamurthy - arunkris@buffalo.edu, 50247445
-
-
-1.1 When RMMAYFAIL and TMMAYFAIL are both false, then the program runs with no errors.
-When RMMAYFAIL is true and TMMAYFAIL is false, the program still runs with no errors.
-This is correct because even though some RMs fail, the TM will look if other RMs have all committed or aborted.
-
-1.2 When RMMAYFAIL is false and TMMAYFAIL is true, the temporal property is violated, i.e. Termination is not satisfied.
-On examining the stack trace, we see that when a state of <prepared, aborted, aborted> is reached and the TM fails (becomes
-hidden), the state does not change for a few more iterations. This is because there is no transaction manager to handle the 
-RM requests. Since there is no way this state will change, it violates the termination property.
-
-1.3 When both TM and RM are allowed to fail, and the BTM is enabled, then the program reaches
-termination and also does not violate consistency.
-When both TM and RM are both true and BTM is enabled, then the program still reaches termination since if TM fails, 
-the BTM takes over and makes sure that the program reaches termination
-
-
 
